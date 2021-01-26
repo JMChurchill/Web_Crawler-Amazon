@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wxFjpoKHh3W7E4THzfo3wu4MFM6nAHWfURtmJ5uYtzIgM3dCa6TQSoF1epCfiSdduAA+BjGwWqFfQ4dtVe6WiA==",
+  "dgSpecHash": "3DN2YJ3gKUbiz84Hj3lzYojxAURSMcXcr36feGCUkqPVLRDW6nMzvOl3GvvtH+rvDm4zx9fPToGlO8yJjtLMKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joshu\\Documents\\_coding\\NET Core\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
+  "projectFilePath": "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joshu\\.nuget\\packages\\csvhelper\\21.1.0\\csvhelper.21.1.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\fsharp.core\\4.5.2\\fsharp.core.4.5.2.nupkg.sha512",

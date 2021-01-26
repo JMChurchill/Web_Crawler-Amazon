@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joshu\\Documents\\_coding\\NET Core\\WebScrapper\\WebScrapper\\WebScrapper.csproj": {}
+    "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\WebScrapper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joshu\\Documents\\_coding\\NET Core\\WebScrapper\\WebScrapper\\WebScrapper.csproj": {
+    "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\WebScrapper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joshu\\Documents\\_coding\\NET Core\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
+        "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
         "projectName": "WebScrapper",
-        "projectPath": "C:\\Users\\joshu\\Documents\\_coding\\NET Core\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
+        "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
         "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joshu\\Documents\\_coding\\NET Core\\WebScrapper\\WebScrapper\\obj\\",
+        "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
