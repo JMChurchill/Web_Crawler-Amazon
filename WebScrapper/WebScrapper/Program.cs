@@ -44,6 +44,8 @@ namespace WebScrapper
             //var lstsearchPageDetails = scrapeCatagory.GetDetailsFromSearchResults(url,0);
             //scrapeCatagory.exportToCsv(lstsearchPageDetails, searchTerm);
             scrapeCatagory.GetDetailsFromSearchResults(url, 1);
+
+            //scrapeCatagory.getDetailsV2(url, 1);
         }
 
     }
