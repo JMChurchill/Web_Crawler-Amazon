@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8EzEA7ChWlB8X66XVqpHh0eOt6UnfG58yfoVTgZ5U3zQSfrPmWK9fn+xokU18e42/QGwFAIIH0Q3OaGExpsKzQ==",
+  "dgSpecHash": "8De4pFXBEYcfKAyJfhQ7LnkVfV2cq4jK5FqWXrbLw3hIsAAcydZvMnSaUY755LBFIzesDjPOystptE8kFFI/bQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\joshu\\Documents\\GitHub\\Web_Scraper-Amazon\\WebScrapper\\WebScrapper\\WebScrapper.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\joshu\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\joshu\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

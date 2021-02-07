@@ -8,6 +8,7 @@ using System.IO;
 using System.Globalization;
 using CsvHelper;
 using WebScrapper.Controller;
+using WebScrapper.Model;
 
 namespace WebScrapper
 {
@@ -22,9 +23,6 @@ namespace WebScrapper
 
             //works with catagory page
             string url = "https://www.amazon.co.uk/s?i=electronics&bbn=560798&rh=n%3A560798%2Cp_6%3AA3P5ROKL5A1OLE&dc&qid=1612380873&rnid=419151031&ref=sr_pg_1";
-            //string url = "https://www.amazon.co.uk/s?i=electronics&bbn=560798&rh=n%3A560798%2Cp_6%3AA3P5ROKL5A1OLE&dc&page=2&qid=1612384091&rnid=419151031&ref=sr_pg_1";
-            //string url = "https://www.amazon.co.uk/s?i=electronics&bbn=560798&rh=n%3A560798%2Cp_6%3AA3P5ROKL5A1OLE&dc&page=79&qid=1612380873&rnid=419151031&ref=sr_pg_1";
-
 
             string searchTerm = "";
 
@@ -39,10 +37,7 @@ namespace WebScrapper
             //var lstsearchPageDetails = searchResults.GetDetailsFromSearchResults(url);
             //searchResults.exportToCsv(lstsearchPageDetails, searchTerm);
 
-
             ScrapeCatagory scrapeCatagory = new ScrapeCatagory();
-            //var lstsearchPageDetails = scrapeCatagory.GetDetailsFromSearchResults(url,0);
-            //scrapeCatagory.exportToCsv(lstsearchPageDetails, searchTerm);
             scrapeCatagory.GetDetailsFromSearchResults(url, 1);
 
             //scrapeCatagory.getDetailsV2(url, 1);

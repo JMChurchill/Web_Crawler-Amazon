@@ -76,3 +76,4 @@ C:\Users\joshu\Documents\GitHub\Web_Scraper-Amazon\WebScrapper\WebScrapper\obj\D
 C:\Users\joshu\Documents\GitHub\Web_Scraper-Amazon\WebScrapper\WebScrapper\obj\Debug\netcoreapp3.1\WebScrapper.dll
 C:\Users\joshu\Documents\GitHub\Web_Scraper-Amazon\WebScrapper\WebScrapper\obj\Debug\netcoreapp3.1\WebScrapper.pdb
 C:\Users\joshu\Documents\GitHub\Web_Scraper-Amazon\WebScrapper\WebScrapper\obj\Debug\netcoreapp3.1\WebScrapper.genruntimeconfig.cache
+C:\Users\joshu\Documents\GitHub\Web_Scraper-Amazon\WebScrapper\WebScrapper\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

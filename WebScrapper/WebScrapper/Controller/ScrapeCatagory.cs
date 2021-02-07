@@ -3,6 +3,7 @@ using ScrapySharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -16,7 +17,6 @@ namespace WebScrapper.Controller
         {
             Console.WriteLine(timesLooped);
             var lstPageDetails = new List<ProductDetails>();
-            //var searchPageLinks = new List<string>();
 
             var web = new HtmlWeb();
 
@@ -28,24 +28,7 @@ namespace WebScrapper.Controller
 
             var temp = web.Load(url);
 
-
-
-            //var htmlNode = GetHtml(url);
-            //var temp = htmlNode.OwnerDocument;
-
             var searchResults = temp.DocumentNode.SelectNodes("//html/body/div[@id='a-page']/div[@id='search']/div[@class='s-desktop-width-max s-desktop-content sg-row']/div[@class='sg-col-16-of-20 sg-col sg-col-8-of-12 sg-col-12-of-16']/div[@class='sg-col-inner']/span[@class='rush-component s-latency-cf-section']/div[@class='s-main-slot s-result-list s-search-results sg-row']/div[@data-component-type='s-search-result']");
-
-            //var searchResults = temp.DocumentNode.CssSelect("");
-
-            //var searchResults = temp.DocumentNode.SelectNodes("//*[@id='search']/div[1]/div[2]/div/span[3]/div[2]/div[2]");
-
-            //if (searchResults == null)
-            //{
-            //    searchResults = temp.DocumentNode.SelectNodes("//html/body/div[@id='a-page']/div[@id='search']/div[@class='s-desktop-width-max s-desktop-content sg-row']/div[@class='sg-col-16-of-20 sg-col sg-col-8-of-12 sg-col-12-of-16']/div[@class='sg-col-inner']/span[@class='rush-component s-latency-cf-section']/div[@class='s-main-slot s-result-list s-search-results sg-row']/div[@data-component-type='s-search-result']");
-            //}
-
-
-
 
             foreach (var result in searchResults)
             {
@@ -62,8 +45,7 @@ namespace WebScrapper.Controller
                     pageDetails.Price = thisResult.SelectSingleNode(".//span[@class='a-offscreen']").InnerText;
                 }
                 catch (NullReferenceException ex)
-                {
-                }
+                {}
 
                 try
                 {
@@ -71,8 +53,7 @@ namespace WebScrapper.Controller
                     pageDetails.Rating = rating.Replace(" out of 5 stars", "");
                 }
                 catch (NullReferenceException ex)
-                {
-                }
+                {}
 
                 string link = "https://www.amazon.co.uk" + item.Attributes["href"].Value;
                 link = link.Replace("amp;", "");
@@ -82,13 +63,18 @@ namespace WebScrapper.Controller
 
             }
 
-            exportToCsv(lstPageDetails, "");
+            //write to csv
+            //exportToCsv(lstPageDetails, "");
+
+            //write to json file
+            JSONWriter writer = new JSONWriter();
+
+            string filePath = Path.GetFullPath("amazonProducts.Json");//file location may change
+
+            writer.addToJson(lstPageDetails, filePath);
+
             timesLooped++;
-            //get next pages url
-            //var nextBtn = temp.DocumentNode.SelectSingleNode("//*[@id='search']/div[1]/div[2]/div/span[3]/div[2]/div[25]/span/div/div/ul/li[7]/a");
-            //string nextPageUrl = "https://www.amazon.co.uk" + nextBtn.Attributes["href"].Value;
-            //nextPageUrl = nextPageUrl.Replace("amp;", "");
-            //Console.WriteLine(nextPageUrl);
+
             string nextPageUrl = "";
             if (timesLooped == 2)
             {
@@ -103,8 +89,8 @@ namespace WebScrapper.Controller
 
 
             Console.WriteLine(nextPageUrl);
-            
-            // use recusion
+
+            // use recursion
             if (timesLooped <= 399)
             {
                 if (nextPageUrl != null)
@@ -179,9 +165,6 @@ namespace WebScrapper.Controller
 
 
             }
-
-
-
         }
 
 
@@ -219,7 +202,6 @@ namespace WebScrapper.Controller
             }
             Debug.WriteLine("-----");
 
-
             // Headers: this is useful if you want to see what kind server the site runs on, among other things...
             Debug.WriteLine("Headers: ");
             foreach (var key in response.Headers.AllKeys)
@@ -227,11 +209,6 @@ namespace WebScrapper.Controller
                 Debug.WriteLine($"{key}: {response.Headers[key]}");
             }
             Debug.WriteLine("-----");
-
-
         }
-
-
-
     }
 }
