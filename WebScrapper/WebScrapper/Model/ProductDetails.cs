@@ -11,5 +11,8 @@ namespace WebScrapper.Model
         public string Description { get; set; }
         public string Url { get; set; }
         public string Rating { get; set; }
+        //make scrape Category
+        public string Category { get; set; }
+        public string ImageURL {get; set; }
     }
 }
