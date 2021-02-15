@@ -11,17 +11,17 @@ namespace WebScrapper.Model
     class JSONWriter
     {
         //convert object to json
-        public void addToJson(List<ProductDetails> data, string filePath)
+        public void addToJson(List<ProductDetailsForGroup> data, string filePath)
         {
             ////deserialise
             JsonSerializer jsonSerializer = new JsonSerializer();
             if (File.Exists(filePath))
             {
                 string obj = File.ReadAllText(filePath);
-                var list = JsonConvert.DeserializeObject<List<ProductDetails>>(obj);
+                var list = JsonConvert.DeserializeObject<List<ProductDetailsForGroup>>(obj);
                 if (list != null)
                 {
-                    foreach (ProductDetails prod in list)
+                    foreach (ProductDetailsForGroup prod in list)
                     {
                         data.Add(prod);
                     }
@@ -36,5 +36,6 @@ namespace WebScrapper.Model
                 sw.Close();
             }
         } 
+
     }
 }

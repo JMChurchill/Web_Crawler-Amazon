@@ -16,7 +16,7 @@ namespace WebScrapper.Controller
         public void GetDetailsFromSearchResults(string url, int timesLooped)
         {
             Console.WriteLine(timesLooped);
-            var lstPageDetails = new List<ProductDetails>();
+            var lstPageDetails = new List<ProductDetailsForGroup>();
 
             var web = new HtmlWeb();
 
@@ -32,13 +32,22 @@ namespace WebScrapper.Controller
 
             foreach (var result in searchResults)
             {
-                var pageDetails = new ProductDetails();
+                var pageDetails = new ProductDetailsForGroup();
 
                 //find link from each result
                 var thisResult = result;
 
                 var item = thisResult.SelectSingleNode(".//a[@class='a-link-normal a-text-normal']");
-                pageDetails.Name = item.SelectSingleNode(".//span[@class='a-size-medium a-color-base a-text-normal']").InnerText;
+                string pName = item.SelectSingleNode(".//span[@class='a-size-medium a-color-base a-text-normal']").InnerText;
+                pName = pName.Replace("  ", " ");
+                
+                pageDetails.Name = pName;
+
+                pageDetails.Category = getCat(pName.ToLower());
+
+                pageDetails.ImageURL = (thisResult.SelectSingleNode(".//img[@class='s-image']")).Attributes["src"].Value;
+                //var tm = thisResult.SelectSingleNode(".//img[@class='s-image'");
+
 
                 try
                 {
@@ -57,7 +66,7 @@ namespace WebScrapper.Controller
 
                 string link = "https://www.amazon.co.uk" + item.Attributes["href"].Value;
                 link = link.Replace("amp;", "");
-                pageDetails.Url = link;
+                //pageDetails.Url = link;
 
                 lstPageDetails.Add(pageDetails);
 
@@ -91,7 +100,7 @@ namespace WebScrapper.Controller
             Console.WriteLine(nextPageUrl);
 
             // use recursion
-            if (timesLooped <= 399)
+            if (timesLooped <= 200)
             {
                 if (nextPageUrl != null)
                 {
@@ -108,12 +117,243 @@ namespace WebScrapper.Controller
             //return lstPageDetails;
         }
 
+        public string getCat(string pName)
+        {
+            string category = "";
+            //determin catagory
+            if (pName.Contains("tv") && !(pName.Contains("stick")))
+            {
+                category = "TVs";
+            }
+            if (pName.Contains("streaming device") || pName.Contains("streaming stick") || (pName.Contains("streaming") && (pName.Contains("media player"))))
+            {
+                category = "Streaming Device";
+            }
+            else if (pName.Contains("airpods") || (pName.Contains("wireless") && (pName.Contains("earphones") || pName.Contains("headphones"))))
+            {
+                category = "Wireless Earphones";
+            }
+            else if (pName.Contains("phone") && !(pName.Contains("speaker")))
+            {
+                category = "Phones";
+                if (pName.Contains("mobile") || pName.Contains("smart") || pName.Contains("iphone"))
+                {
+                    category = "Mobile Phones";
+                }
+                else if (pName.Contains("home"))
+                {
+                    category = "Home Phones";
+                }
+            }
+            else if (pName.Contains("batteries") || pName.Contains("battery"))
+            {
+                category = "Batteries";
+            }
+            else if (pName.Contains("speaker"))
+            {
+                category = "Speakers";
+                if (pName.Contains("smart"))
+                {
+                    category = "Smart Speaker";
+                }
+            }
+            else if ((pName.Contains("power") && pName.Contains("adapter")) || pName.Contains("charger"))
+            {
+                category = "Power Adapters";
+            }
+            else if (pName.Contains("webcam"))
+            {
+                category = "Webcams";
+            }
+            else if ((pName.Contains("router") || pName.Contains("wi-fi") || pName.Contains("wifi")) && !(pName.Contains("laptop") || pName.Contains("tablet") || pName.Contains("pc") || pName.Contains("ipad")))
+            {
+                category = "Wi-Fi and Routers";
+            }
+            else if (pName.Contains("hdmi") || pName.Contains("cable") || pName.Contains("ethernet"))
+            {
+                category = "Cables";
+                if (pName.Contains("eithernet") && pName.Contains("hub"))
+                {
+                    category = "Eithernet Hubs";
+                }
+            }
+            else if (pName.Contains("usb"))
+            {
+                category = "USB devices";
+                if (pName.Contains("hub"))
+                {
+                    category = "USB Hubs";
+                }
+            }
+            else if (pName.Contains("earpods") || pName.Contains("earphones"))
+            {
+                category = "Earphones";
+            }
+            else if (pName.Contains("ink"))
+            {
+                category = "Ink";
+            }
+            else if (pName.Contains("tablet") || pName.Contains("ipad"))
+            {
+                category = "Tablets";
+            }
+            else if (pName.Contains("hard drive") || pName.Contains("hdd"))
+            {
+                category = "Hard Drives";
+                if (pName.Contains("External"))
+                {
+                    category = "External Hard Drives";
+                }
+            }
+            else if (pName.Contains("ssd") || pName.Contains("solid state drive"))
+            {
+                category = "Solid State Drives";
+                if (pName.Contains("External"))
+                {
+                    category = "External Solid State Drives";
+                }
+            }
+            else if ((pName.Contains("memory") && pName.Contains("card")) || (pName.Contains("sd") && pName.Contains("card")))
+            {
+                category = "SD cards";
+            }
+            else if (pName.Contains("laptop") || pName.Contains("macbook"))
+            {
+                category = "laptops";
+            }
+            else if (pName.Contains("headphone") || pName.Contains("headset"))
+            {
+
+                if (pName.Contains("wireless"))
+                {
+                    category = "Wireless";
+                }
+                if (pName.Contains("headset"))
+                {
+                    category += "Headsets";
+                }
+                else
+                {
+                    category += "Headphones";
+                }
+            }
+            else if (pName.Contains("controller"))
+            {
+                category = "Controllers";
+                if (pName.Contains("wireless"))
+                {
+                    category = "Wireless Controllers";
+                }
+            }
+            else if (pName.Contains("tracker"))
+            {
+                category = "Activity trackers";
+            }
+            else if (pName.Contains("kindle") || pName.Contains("reader"))
+            {
+                category = "E-Readers";
+            }
+            else if ((pName.Contains("smart") || pName.Contains("apple")) && pName.Contains("watch"))
+            {
+                category = "Smart Watches";
+            }
+            else if (pName.Contains("mouse mat"))
+            {
+                category = "Mouse Mat";
+            }
+            else if (pName.Contains("mouse"))
+            {
+                category = "Mice";
+                if (pName.Contains("wireless") || pName.Contains("wire-less") || pName.Contains("bluetooth"))
+                {
+                    category = "Wireless Mice";
+                }
+                if (pName.Contains("keyboard"))
+                {
+                    category += " and Keyboards";
+                }
+            }
+            else if (pName.Contains("keyboard"))
+            {
+                category = "Keyboards";
+                if (pName.Contains("wireless") || pName.Contains("wire-less") || pName.Contains("bluetooth"))
+                {
+                    category = "Wireless Keyboards";
+                }
+            }
+            else if (pName.Contains("monitor"))
+            {
+                category = "Monitors";
+            }
+            else if (pName.Contains("camera"))
+            {
+                category = "Cameras";
+                if (pName.Contains("security"))
+                {
+                    category = "Security Cameras";
+                }
+                else if (pName.Contains("smart"))
+                {
+                    category = "Smart Cameras";
+                }
+            }
+            else if (pName.Contains("mac mini") || pName.Contains("pc") || (pName.Contains("desktop") && pName.Contains("computer")))
+            {
+                category = "Desktop Computers";
+            }
+            else if (pName.Contains("ram") || pName.Contains("ddr4") || pName.Contains("ddr3"))
+            {
+                category = "RAM";
+            }
+            else if (pName.Contains("psu") || pName.Contains("power supply"))
+            {
+                category = "Power Supplies";
+            }
+            else if ((pName.Contains("graphics") && pName.Contains("card")))
+            {
+                category = "Graphics Cards";
+            }
+            else if (pName.Contains("cpu") || pName.Contains("processor"))
+            {
+                category = "CPUs";
+            }
+            else if (pName.Contains("doorbell") || (pName.Contains("door") && pName.Contains("bell")))
+            {
+                category = "Doorbells";
+            }
+            else if (pName.Contains("adapter"))
+            {
+                category = "Adapters";
+            }
+            else if (pName.Contains("dvd"))
+            {
+                category = "DVDs";
+                if (pName.Contains("player"))
+                {
+                    category = "DVD Players";
+                }
+            }
+            else if (pName.Contains("remote"))
+            {
+                category = "Remotes";
+            }
+            else if (pName.Contains("smart"))
+            {
+                category = "Smart Devices";
+            }
+            else
+            {
+                category = "Electronics";
+            }
+            return category;
+        }
+
         public void getDetailsV2(string url, int timesLooped)
         {
 
 
             Console.WriteLine(timesLooped);
-            var lstPageDetails = new List<ProductDetails>();
+            var lstPageDetails = new List<ProductDetailsForGroup>();
             //var searchPageLinks = new List<string>();
 
 
