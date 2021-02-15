@@ -16,7 +16,7 @@ namespace WebScrapper.Controller
         public void GetDetailsFromSearchResults(string url, int timesLooped)
         {
             Console.WriteLine(timesLooped);
-            var lstPageDetails = new List<ProductDetails>();
+            var lstPageDetails = new List<ProductDetailsForGroup>();
 
             var web = new HtmlWeb();
 
@@ -32,7 +32,7 @@ namespace WebScrapper.Controller
 
             foreach (var result in searchResults)
             {
-                var pageDetails = new ProductDetails();
+                var pageDetails = new ProductDetailsForGroup();
 
                 //find link from each result
                 var thisResult = result;
@@ -45,7 +45,8 @@ namespace WebScrapper.Controller
 
                 pageDetails.Category = getCat(pName.ToLower());
 
-                
+                pageDetails.ImageURL = (thisResult.SelectSingleNode(".//img[@class='s-image']")).Attributes["src"].Value;
+                //var tm = thisResult.SelectSingleNode(".//img[@class='s-image'");
 
 
                 try
@@ -65,7 +66,7 @@ namespace WebScrapper.Controller
 
                 string link = "https://www.amazon.co.uk" + item.Attributes["href"].Value;
                 link = link.Replace("amp;", "");
-                pageDetails.Url = link;
+                //pageDetails.Url = link;
 
                 lstPageDetails.Add(pageDetails);
 
@@ -131,6 +132,18 @@ namespace WebScrapper.Controller
             else if (pName.Contains("airpods") || (pName.Contains("wireless") && (pName.Contains("earphones") || pName.Contains("headphones"))))
             {
                 category = "Wireless Earphones";
+            }
+            else if (pName.Contains("phone") && !(pName.Contains("speaker")))
+            {
+                category = "Phones";
+                if (pName.Contains("mobile") || pName.Contains("smart") || pName.Contains("iphone"))
+                {
+                    category = "Mobile Phones";
+                }
+                else if (pName.Contains("home"))
+                {
+                    category = "Home Phones";
+                }
             }
             else if (pName.Contains("batteries") || pName.Contains("battery"))
             {
@@ -244,17 +257,9 @@ namespace WebScrapper.Controller
             {
                 category = "Smart Watches";
             }
-            else if (pName.Contains("phone"))
+            else if (pName.Contains("mouse mat"))
             {
-                category = "Phones";
-                if (pName.Contains("mobile") || pName.Contains("smart"))
-                {
-                    category = "Mobile Phones";
-                }
-                else if (pName.Contains("home"))
-                {
-                    category = "Home Phones";
-                }
+                category = "Mouse Mat";
             }
             else if (pName.Contains("mouse"))
             {
@@ -348,7 +353,7 @@ namespace WebScrapper.Controller
 
 
             Console.WriteLine(timesLooped);
-            var lstPageDetails = new List<ProductDetails>();
+            var lstPageDetails = new List<ProductDetailsForGroup>();
             //var searchPageLinks = new List<string>();
 
 
