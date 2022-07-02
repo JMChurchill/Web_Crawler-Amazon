@@ -5,7 +5,7 @@
 
 ## Intentions
 * Get Product information 
-* Output CSV (to database in future) 
+* Output CSV which can then be used to transfer the data to a database 
 
 ## What I Learned
 * Advanced DOM Navigation 
